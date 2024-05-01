@@ -1,0 +1,158 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(#E8A0BF, #FFFFFF);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+
+}/*--Footer*/
+footer {
+    background: linear-gradient(#D66894, #906FA2);
+    color: white;
+    text-align: center;
+    padding: 0px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+}/*--End--*/
+/*--Navigation Bar--*/
+.navbar{
+    background: linear-gradient(#D66894, #906FA2);
+    display: flex;
+    justify-content: space-between; /* Align children with space between */
+    align-items: center; /* Vertically center children */
+    margin: 0, auto;
+    width: 100%;
+    height: 88px;
+
+}
+.nav-menu ul{
+    display: flex;
+    list-style-type: none;
+    margin: 0, auto;
+    padding: 0, auto;
+    margin-left: 30px;
+    align-items: center;
+}
+/*Home, Services, About Spacings*/
+.nav-link{
+    margin-left: 200px;
+    margin-right: 180px;
+    list-style-type: none;
+    align-items: center;
+}
+.nav-menu li{
+    list-style-type: none;
+    align-items: center;
+    margin-left: 30px;
+}
+.nav-menu ul li .link{
+    text-decoration: none;
+    font-weight: 500;
+    color: #fff;
+    margin: 10px;
+    padding-bottom: 8px;
+ }
+ .link:hover{
+    border-bottom: 2px solid #fff;
+}
+li[id="logout"]{
+  margin-left:200px;
+}
+li[id="prof"]{
+  margin-left: 20px;
+}/*--End--*/
+/*--End of Navbar--*/
+        /* Track */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the entire scrollbar */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(rgba(214, 104, 148, 0.9), rgba(144, 111, 162, 0.7)); /* Color of the scroll thumb */
+  border-radius: 10px; /* Rounded corners of the scroll thumb */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #EF9FBF; /* Color of the scroll thumb on hover */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the scrollbar track */
+}
+
+/* Handle when it's dragged */
+::-webkit-scrollbar-thumb:active {
+  background-color: #C65D7A; /* Color of the scroll thumb when dragged */
+}
+        /* Track */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the entire scrollbar */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(rgba(214, 104, 148, 0.9), rgba(144, 111, 162, 0.7)); /* Color of the scroll thumb */
+  border-radius: 10px; /* Rounded corners of the scroll thumb */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #EF9FBF; /* Color of the scroll thumb on hover */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the scrollbar track */
+}
+
+/* Handle when it's dragged */
+::-webkit-scrollbar-thumb:active {
+  background-color: #C65D7A; /* Color of the scroll thumb when dragged */
+}
+.receipt {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.receipt h1 {
+    text-align: center;
+}
+
+.customer-details {
+    margin-bottom: 20px;
+}
+
+.customer-details p {
+    margin: 5px 0;
+}
+
+.items table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.items th, .items td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.items th {
+    background-color: #f2f2f2;
+}
+
+.total {
+    text-align: right;
+    margin-top: 20px;
+}

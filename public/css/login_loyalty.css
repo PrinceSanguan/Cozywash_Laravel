@@ -1,0 +1,138 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(#E8A0BF, #FFFFFF);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+
+}/*--Footer*/
+footer {
+    background: linear-gradient(#D66894, #906FA2);
+    color: white;
+    text-align: center;
+    padding: 0px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+}/*--End--*/
+/*--Navigation Bar--*/
+.navbar{
+    background: linear-gradient(#D66894, #906FA2);
+    display: flex;
+    justify-content: space-between; /* Align children with space between */
+    align-items: center; /* Vertically center children */
+    margin: 0, auto;
+    width: 100%;
+    height: 88px;
+
+}
+.nav-menu ul{
+    display: flex;
+    list-style-type: none;
+    margin: 0, auto;
+    padding: 0, auto;
+    margin-left: 30px;
+    align-items: center;
+}
+/*Home, Services, About Spacings*/
+.nav-link{
+    margin-left: 200px;
+    margin-right: 200px;
+    list-style-type: none;
+    align-items: center;
+}
+.nav-menu li{
+    list-style-type: none;
+    align-items: center;
+    margin-left: 30px;
+}
+.nav-menu ul li .link{
+    text-decoration: none;
+    font-weight: 500;
+    color: #fff;
+    margin: 10px;
+    padding-bottom: 8px;
+ }
+ .link:hover{
+    border-bottom: 2px solid #fff;
+}
+li[id="logout"]{
+  margin-left:200px;
+}
+li[id="prof"]{
+  margin-left: 20px;
+}/*--End--*/
+/*--End of Navbar--*/
+
+button {
+    padding: 10px 20px; /* Uniform padding */
+    font-size: 16px;
+    background-color: #D66894;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 30%;
+    box-sizing: border-box;
+    margin: 20px auto; /* Center the button horizontally and provide margin on top and bottom */
+}
+
+button:hover {
+    background-color: #EF9FBF;
+}
+#redeemCodeInput {
+    width: 200px;
+    padding: 10px;
+    margin-bottom: 20px; /* Increase bottom margin for better spacing */
+    border: 1px solid #D66894; /* Border color */
+    border-radius: 5px;
+    box-sizing: border-box; /* Include padding and border in width calculation */
+    font-size: 16px;
+}
+
+#redeemCodeInput::placeholder {
+    color: #aaa; /* Placeholder text color */
+}
+
+#redeemCodeInput:focus {
+    outline: none; /* Remove outline when focused */
+    border-color: #EF9FBF; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(214, 104, 148, 0.7); /* Add shadow on focus */
+}
+div [class="history"]{
+    float:right ;
+    width: 500px;
+    margin-right: 100px; 
+    margin-top: 50px;
+    padding: 50px;
+    border: 1px solid #D66894;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 8px 10px 20px rgba(136, 136, 136, 0.7);
+    background: linear-gradient(rgba(255, 236, 243, 0.5), rgba(255, 255, 255, 0.9));
+}
+div [class="column"]{
+    float:left ;
+    max-width: 550px;
+    margin-left: 100px; 
+    margin-top: 50px;
+    padding: 50px;
+    border: 1px solid #D66894;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 8px 10px 20px rgba(136, 136, 136, 0.7);
+    background: linear-gradient(rgba(255, 236, 243, 0.5), rgba(255, 255, 255, 0.9));
+}
+div [id="container1"]{
+    background: #DD7FA5;
+    border-radius: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-right: 20px;
+    padding-left: 5px;
+    margin-top: -18px;
+    margin-bottom: 30px;
+}

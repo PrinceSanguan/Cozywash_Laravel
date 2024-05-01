@@ -1,0 +1,222 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("../image/background.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+
+}/*--Footer*/
+footer {
+    background: linear-gradient(#D66894, #906FA2);
+    color: white;
+    text-align: center;
+    padding: 0px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+}/*--End--*/
+/*--Navigation Bar--*/
+.navbar{
+    background: linear-gradient(#D66894, #906FA2);
+    display: flex;
+    justify-content: space-between; /* Align children with space between */
+    align-items: center; /* Vertically center children */
+    margin: 0, auto;
+    width: 100%;
+    height: 88px;
+
+}
+.nav-menu ul{
+    display: flex;
+    list-style-type: none;
+    margin: 0, auto;
+    padding: 0, auto;
+    margin-left: 30px;
+    align-items: center;
+}
+/*Home, Services, About Spacings*/
+.nav-link{
+    margin-left: 350px;
+    margin-right: 250px;
+    list-style-type: none;
+    align-items: center;
+}
+.nav-menu li{
+    list-style-type: none;
+    align-items: center;
+    margin-left: 30px;
+}
+.nav-menu ul li .link{
+    text-decoration: none;
+    font-weight: 500;
+    color: #fff;
+    margin: 10px;
+    padding-bottom: 8px;
+ }
+ .link:hover{
+    border-bottom: 2px solid #fff;
+}/*--End--*/
+/*Login & Register Button Spacings*/
+.nav-button{
+    margin-right: 18px;
+    margin-left: -50px;
+}
+button{
+    width: 130px;
+    height: 40px;
+    margin: 0, auto;
+    margin-left: 20px;
+    margin-right: 10px;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.4);
+    border:none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .1s ease;
+}
+button[id=loginBtn]{
+    margin-left: 100px;
+}
+button:hover{
+    background: linear-gradient(135deg, rgba(232, 160, 191, 0.8), rgba(255, 255, 255, 0.8));
+} /*--End--*/
+/*--End of Navbar--*/
+        /* Track */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the entire scrollbar */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(rgba(214, 104, 148, 0.9), rgba(144, 111, 162, 0.7)); /* Color of the scroll thumb */
+  border-radius: 10px; /* Rounded corners of the scroll thumb */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #EF9FBF; /* Color of the scroll thumb on hover */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the scrollbar track */
+}
+
+/* Handle when it's dragged */
+::-webkit-scrollbar-thumb:active {
+  background-color: #C65D7A; /* Color of the scroll thumb when dragged */
+}
+form[id="registrationForm"] {
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 80px;
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(rgba(214, 104, 148, 0.5), rgba(144, 111, 162, 0.9)); 
+    align-items: center;
+    text-align: center;
+}
+
+input[type="text"],
+input[type="contact"],
+input[type="email"],
+input[type="password"] {
+    width: calc(60% - 50px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button[id="registerNow"] {
+    padding: 10px 20px;
+    margin-right: -10px;
+    margin-left: -10px;
+    font-size: 16px;
+    background-color: #D66894;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 96%; 
+    box-sizing: border-box;
+}
+
+button:hover {
+    background-color: #EF9FBF;
+}
+
+.terms-link {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+
+.terms-error {
+    color: red;
+    margin-top: 5px;
+    display: none; /* Initially hide error message */
+}
+
+.login-link {
+    text-align: center; /* Aligns the login link to the center */
+}
+
+.login-link a {
+    color: #007bff; /* Changed link color to match button color */
+    text-decoration: none; /* Removed underline from link */
+}
+
+.login-link a:hover {
+    text-decoration: underline; /* Underline link on hover */
+}
+
+#termsModal {
+    display: none; /* Initially hide terms modal */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+#termsModal > div {
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 80%;
+    max-height: 80%;
+    overflow: auto;
+}
+
+#termsModal h2 {
+    margin-left: 20px;
+}
+
+#termsModal p {
+    text-align: justify;
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+#termsModal button {
+    margin-top: 20px;
+}

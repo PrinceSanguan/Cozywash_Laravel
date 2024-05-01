@@ -1,0 +1,218 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(#E8A0BF, #FFFFFF);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+
+}/*--Footer*/
+footer {
+    background: linear-gradient(#D66894, #906FA2);
+    color: white;
+    text-align: center;
+    padding: 0px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+}/*--End--*/
+/*--Navigation Bar--*/
+.navbar{
+    background: linear-gradient(#D66894, #906FA2);
+    display: flex;
+    justify-content: space-between; /* Align children with space between */
+    align-items: center; /* Vertically center children */
+    margin: 0, auto;
+    width: 100%;
+    height: 88px;
+
+}
+.nav-menu ul{
+    display: flex;
+    list-style-type: none;
+    margin: 0, auto;
+    padding: 0, auto;
+    margin-left: 30px;
+    align-items: center;
+}
+/*Home, Services, About Spacings*/
+.nav-link{
+    margin-left: 350px;
+    margin-right: 250px;
+    list-style-type: none;
+    align-items: center;
+}
+.nav-menu li{
+    list-style-type: none;
+    align-items: center;
+    margin-left: 30px;
+}
+.nav-menu ul li .link{
+    text-decoration: none;
+    font-weight: 500;
+    color: #fff;
+    margin: 10px;
+    padding-bottom: 8px;
+ }
+ .link:hover{
+    border-bottom: 2px solid #fff;
+}/*--End--*/
+/*Login & Register Button Spacings*/
+.nav-button{
+    margin-right: 18px;
+    margin-left: -50px;
+}
+button{
+    width: 130px;
+    height: 40px;
+    margin: 0, auto;
+    margin-left: 20px;
+    margin-right: 10px;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.4);
+    border:none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .1s ease;
+}
+button[id=loginBtn]{
+    margin-left: 100px;
+}
+button:hover{
+    background: linear-gradient(135deg, rgba(232, 160, 191, 0.8), rgba(255, 255, 255, 0.8));
+} /*--End--*/
+/*--End of Navbar--*/
+        /* Track */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the entire scrollbar */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(rgba(214, 104, 148, 0.9), rgba(144, 111, 162, 0.7)); /* Color of the scroll thumb */
+  border-radius: 10px; /* Rounded corners of the scroll thumb */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #EF9FBF; /* Color of the scroll thumb on hover */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the scrollbar track */
+}
+
+/* Handle when it's dragged */
+::-webkit-scrollbar-thumb:active {
+  background-color: #C65D7A; /* Color of the scroll thumb when dragged */
+}
+        /* Track */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the entire scrollbar */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(rgba(214, 104, 148, 0.9), rgba(144, 111, 162, 0.7)); /* Color of the scroll thumb */
+  border-radius: 10px; /* Rounded corners of the scroll thumb */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #EF9FBF; /* Color of the scroll thumb on hover */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the scrollbar track */
+}
+
+/* Handle when it's dragged */
+::-webkit-scrollbar-thumb:active {
+  background-color: #C65D7A; /* Color of the scroll thumb when dragged */
+}
+.container1{
+    width: 500px;
+    height: 500px;
+    margin-left: 80px;
+}
+.container2{
+    float: right;
+    margin-right: 100px;
+    margin-top: -500px;
+    text-align: center;
+}
+.column1{
+  width: 400px;
+  height: 200px;
+  box-shadow: 5px 6px #888888;
+  align-items: center;
+  align-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-left: 50px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  transition: box-shadow 0.3s ease;
+  box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+.column2{
+  width: 400px;
+  height: 200px;
+  box-shadow: 5px 6px #888888;
+  align-items: center;
+  align-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-left: 50px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  transition: box-shadow 0.3s ease;
+  box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 30px;
+}
+.column1:hover {
+  box-shadow: 8px 18px 20px rgba(136, 136, 136, 0.7);
+}
+.column2:hover {
+  box-shadow: 8px 18px 20px rgba(136, 136, 136, 0.7);
+}
+img[src="about.png"]{
+    border-radius: 10px;
+    box-shadow: 6px 6px #888888;
+}
+.container3{
+    margin-top: 225px;
+    margin-left: -80px;
+    margin-bottom: 100px;
+    text-align: left;
+    border-radius: 50px;
+}
+.column2{
+  width: 500px;
+  height: 200px;
+}
+.container4{
+    float: right;
+}
+iframe{
+    margin-right: 100px;
+    margin-top: -1500px;
+    margin-bottom: 120px;
+}
+h4[id="hc2"],
+p[id="p2"]{
+    margin-left: 50px;
+    margin-top: 20px;
+}
+p[id="p2"]{
+    font-size: 25px;
+}
