@@ -15,12 +15,6 @@
     @csrf
     <h2 style="color: white;">Login to CozyWash!</h2>
 
-    <script>
-        @if(session('error'))
-            alert("{{ session('error') }}");
-        @endif
-    </script>
-
     <input type="email" id="email" name="email" placeholder="Email"><br>
 
     <input type="password" id="password" name="password" placeholder="Password"><br>
@@ -45,6 +39,11 @@
 </body>
 </html>
 
+@if(session('error'))
+    <script>
+        alert('{{ session('error') }}');
+    </script>
+@endif
 <script src="{{asset('js/login.js')}}"></script>
 </body>
 </html>

@@ -40,6 +40,7 @@ class RegisterController extends Controller
     
         // Display success message as alert
     echo "<script>alert('Registration successful!'); window.location.href = '/auth/login';</script>";
+    
     }
     
 }

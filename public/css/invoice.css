@@ -1,0 +1,225 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(#E8A0BF, #FFFFFF);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.form {
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(rgba(255, 236, 243, 0.2), rgba(255, 255, 255, 0.9));
+    margin-left: 200px;
+    float: left;
+
+}
+.quantityForm{
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 300px;
+    height: 300px;
+    box-sizing: border-box;
+    background: linear-gradient(rgba(255, 236, 243, 0.2), rgba(255, 255, 255, 0.9));
+    margin-left: 90px;
+    float: left;
+
+}
+.invoice:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+select {
+    width: calc(30% - 50px);
+    padding: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    appearance: none;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 14a1 1 0 01-.7-.29l-4-4a1.003 1.003 0 111.42-1.42L10 11.59l3.3-3.3a1.003 1.003 0 111.42 1.42l-4 4a1 1 0 01-.71.29z" fill="%23666"/></svg>') no-repeat right 10px center/15px 15px;
+}
+input[id="kilos"]{
+    width: calc(20% - 50px);
+    padding: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    appearance: none;
+}
+input[id="detergent"],
+input[id="fabcon"],
+input[id="bleach"],
+input[id="plastic"]
+{
+    width: calc(50% - 50px);
+    padding: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    appearance: none;
+}
+.menu-toggle {
+  display: block;
+  width: 30px;
+  height: 10px;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+}
+.menu {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #D66894;
+  transition: left 0.3s ease;
+  font-size: 20px;
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 88px;
+}
+
+.menu ul li {
+  padding: 20px;
+}
+
+.menu ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.menu ul li a:hover {
+  text-decoration: underline;
+}
+ #datetime {
+            color: white;
+            font-size: 16px;
+            font-family: monaco, monospace;
+            margin-top: 30px;
+            padding: 0; 
+            text-align: center;
+            margin-top: -36px; 
+            background: #D66894; 
+            margin-left: 1051px; 
+            margin-right: 80px;
+            border-radius: 7px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+       button[id=searchButton],
+       button[id=redeemButton] {
+    padding: 5px;
+    font-size: 12px;
+    background-color: #D66894;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 12%; 
+    box-sizing: border-box;
+}
+button[id=clearButton]{
+    padding: 10px;
+    font-size: 15px;
+    background-color: #D66894;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 8%; 
+    box-sizing: border-box;
+    margin-bottom: 50px;
+    position: absolute;
+    bottom: 0;
+}
+button[id=proceedButton]{
+    padding: 10px;
+    font-size: 15px;
+    background-color: #73A379;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 8%; 
+    box-sizing: border-box;
+    margin-bottom: 50px;
+    position: absolute;
+    bottom: 0;
+    margin-left: 155px;
+}
+button[id=proceedButton]:hover{
+    background-color: #93B798;
+}
+
+button:hover {
+    background-color: #EF9FBF;
+}
+/* Footer styles */
+footer {
+    background: linear-gradient(#D66894, #906FA2);
+    color: white;
+    text-align: center;
+    padding: 0px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 38px;
+}
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Total rows */
+tfoot td {
+  font-weight: bold;
+}
+
+/* Alternate row colors */
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}

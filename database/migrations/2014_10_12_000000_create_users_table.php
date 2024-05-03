@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('contact');
             $table->string('password');
             $table->string('address');
+            $table->enum('userType', ['admin', 'staff', 'customer'])->default('customer');
             $table->timestamps();
         });
     }

@@ -2,14 +2,13 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(#E8A0BF, #FFFFFF);
+    background-image: url("../image/back.png");
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-
-}/*--Footer*/
+} /*--Footer*/
 footer {
-    background: linear-gradient(#D66894, #906FA2);
+    background: linear-gradient(#d66894, #906fa2);
     color: white;
     text-align: center;
     padding: 0px;
@@ -17,19 +16,18 @@ footer {
     bottom: 0;
     width: 100%;
     height: 30px;
-}/*--End--*/
+} /*--End--*/
 /*--Navigation Bar--*/
-.navbar{
-    background: linear-gradient(#D66894, #906FA2);
+.navbar {
+    background: linear-gradient(#d66894, #906fa2);
     display: flex;
     justify-content: space-between; /* Align children with space between */
     align-items: center; /* Vertically center children */
     margin: 0, auto;
     width: 100%;
     height: 88px;
-
 }
-.nav-menu ul{
+.nav-menu ul {
     display: flex;
     list-style-type: none;
     margin: 0, auto;
@@ -38,83 +36,89 @@ footer {
     align-items: center;
 }
 /*Home, Services, About Spacings*/
-.nav-link{
+.nav-link {
     margin-left: 200px;
-    margin-right: 180px;
+    margin-right: 200px;
     list-style-type: none;
     align-items: center;
 }
-.nav-menu li{
+.nav-menu li {
     list-style-type: none;
     align-items: center;
     margin-left: 30px;
 }
-.nav-menu ul li .link{
+.nav-menu ul li .link {
     text-decoration: none;
     font-weight: 500;
     color: #fff;
     margin: 10px;
     padding-bottom: 8px;
- }
- .link:hover{
+}
+.link:hover {
     border-bottom: 2px solid #fff;
 }
-li[id="logout"]{
-  margin-left:200px;
+li[id="logout"] {
+    margin-left: 200px;
 }
-li[id="prof"]{
-  margin-left: 20px;
-}/*--End--*/
+li[id="prof"] {
+    margin-left: 20px;
+} /*--End--*/
 /*--End of Navbar--*/
-        /* Track */
+/* Track */
 ::-webkit-scrollbar {
-  width: 12px; /* Width of the entire scrollbar */
+    width: 12px; /* Width of the entire scrollbar */
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(rgba(214, 104, 148, 0.9), rgba(144, 111, 162, 0.7)); /* Color of the scroll thumb */
-  border-radius: 10px; /* Rounded corners of the scroll thumb */
+    background: linear-gradient(
+        rgba(214, 104, 148, 0.9),
+        rgba(144, 111, 162, 0.7)
+    ); /* Color of the scroll thumb */
+    border-radius: 10px; /* Rounded corners of the scroll thumb */
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #EF9FBF; /* Color of the scroll thumb on hover */
+    background-color: #ef9fbf; /* Color of the scroll thumb on hover */
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Color of the scrollbar track */
+    background: #f1f1f1; /* Color of the scrollbar track */
 }
 
 /* Handle when it's dragged */
 ::-webkit-scrollbar-thumb:active {
-  background-color: #C65D7A; /* Color of the scroll thumb when dragged */
+    background-color: #c65d7a; /* Color of the scroll thumb when dragged */
 }
-        /* Track */
+/* Track */
 ::-webkit-scrollbar {
-  width: 12px; /* Width of the entire scrollbar */
+    width: 12px; /* Width of the entire scrollbar */
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(rgba(214, 104, 148, 0.9), rgba(144, 111, 162, 0.7)); /* Color of the scroll thumb */
-  border-radius: 10px; /* Rounded corners of the scroll thumb */
+    background: linear-gradient(
+        rgba(214, 104, 148, 0.9),
+        rgba(144, 111, 162, 0.7)
+    ); /* Color of the scroll thumb */
+    border-radius: 10px; /* Rounded corners of the scroll thumb */
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #EF9FBF; /* Color of the scroll thumb on hover */
+    background-color: #ef9fbf; /* Color of the scroll thumb on hover */
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Color of the scrollbar track */
+    background: #f1f1f1; /* Color of the scrollbar track */
 }
 
 /* Handle when it's dragged */
 ::-webkit-scrollbar-thumb:active {
-  background-color: #C65D7A; /* Color of the scroll thumb when dragged */
+    background-color: #c65d7a; /* Color of the scroll thumb when dragged */
 }
 .receipt {
     width: 80%;
@@ -142,7 +146,8 @@ li[id="prof"]{
     border-collapse: collapse;
 }
 
-.items th, .items td {
+.items th,
+.items td {
     padding: 8px;
     border-bottom: 1px solid #ddd;
     text-align: left;
