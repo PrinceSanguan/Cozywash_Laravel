@@ -184,7 +184,101 @@ class AdminController extends Controller
             return redirect()->route('admin.invoice')->with('error', 'Failed to customer order.');
         }
 
-        // Display success message as alert
-        echo "<script>alert('Customer Order Success!'); window.location.href = '/admin/invoice';</script>";
-    }
+        // Fetch only the last entry from customerOrder table
+        $latestOrder = CustomerOrder::latest()->first();
+
+        // fabcon price
+        $fabconPrice = $latestOrder->fabcon * 12;
+
+        // detergent price
+        $detergentPrice = $latestOrder->detergent * 18;
+
+        // Bleach price
+        $bleachPrice = $latestOrder->bleach * 12;
+
+        // platic
+        $plasticPrice = $latestOrder->plastic * 3;
+
+        $totalBalance = $fabconPrice + $detergentPrice + $bleachPrice + $plasticPrice +
+                        65 + 75 + 30 + 30;
+
+        // Display success message as modal along with the last entry
+        return "
+        <div id='myModal' class='modal' style='display: block;'>
+            <div class='modal-content'>
+                <span class='close'>&times;</span>
+                <p id='successMessage'>Customer Order Success!</p>
+                <table border='1'>
+                    <tr><th>Expenses</th><th>amount</th><th>qty</th><th>Total Amount</th></tr>
+                    <tr>
+                        <td>Wash</td>
+                        <td>65.00</td>
+                        <td>-</td>
+                        <td>65.00</td>
+                    </tr>
+                    <tr>
+                        <td>Dry</td>
+                        <td>75.00</td>
+                        <td>-</td>
+                        <td>75.00</td>
+                    </tr>
+                    <tr>
+                        <td>Fold</td>
+                        <td>30.00</td>
+                        <td>-</td>
+                        <td>30.00</td>
+                    </tr>
+                    <tr>
+                        <td>Detergent</td>
+                        <td>18.00</td>
+                        <td>{$latestOrder->detergent}</td>
+                        <td>{$detergentPrice}</td>
+                    </tr>
+                    <tr>
+                        <td>Fabcon</td>
+                        <td>12.00</td>
+                        <td>{$latestOrder->fabcon}</td>
+                        <td>{$fabconPrice}</td>
+                    </tr>
+                    <tr>
+                        <td>Bleach (Color Safe)</td>
+                        <td>12.00</td>
+                        <td>{$latestOrder->bleach}</td>
+                        <td>{$bleachPrice}.00</td>
+                    </tr>
+                    <tr>
+                        <td>Plastik</td>
+                        <td>3.00</td>
+                        <td>{$latestOrder->plastic}</td>
+                        <td>{$plasticPrice}.00</td>
+                    </tr>
+                    <tr>
+                        <td>Addt'l Charges</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>Delivery</td>
+                        <td>30.00</td>
+                        <td>-</td>
+                        <td>30.00</td>
+                    </tr>
+                    <tr>
+                        <td>Total Balance</td>
+                        <td></td>
+                        <td></td>
+                        <td>{$totalBalance}.00</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <script>
+            setTimeout(function() {
+                window.location.href = '/admin/invoice';
+            }, 25000); // Redirect after 10 seconds
+        </script>";
+
+
+        }
 }

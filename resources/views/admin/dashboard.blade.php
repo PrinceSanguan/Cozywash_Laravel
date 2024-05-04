@@ -130,8 +130,6 @@ setInterval(updateDateTime, 1000);</script>
         </table>
     </div>
 
-
-
 </body>
 </html>
 

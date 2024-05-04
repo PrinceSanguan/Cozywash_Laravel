@@ -149,9 +149,15 @@ function toggleMenu() {
             <button type="button" id="clearButton">Clear</button>
             <button type="submit" id="proceedButton">Proceed</button>
         </form>
+
+        <!-- Modal -->
+{{-- <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p id="successMessage"></p>
+    </div>
+  </div> --}}
         
-
-
 <footer>
     <p style="font-size: 13px;"> &copy; 2024 CozyWash. All rights reserved.</p>
 </footer>
