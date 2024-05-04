@@ -108,10 +108,24 @@ setInterval(updateDateTime, 1000);</script>
                     <th>Sales</th>
                     <th style="width:80px">Payment</th>
                     <th>Service Status</th>
+                    <th>Date</th>
                 </tr>
             </thead>
-            <tbody id="orders-body">
-                <!-- Order rows will be dynamically added here -->
+            <tbody>
+                @if ($customerOrder)
+                @foreach ($customerOrder as $customerOrders)
+                  <tr>
+                    <td>{{ $customerOrders->id }}</td>
+                    <td>{{ $customerOrders->user->lastName }}</td>
+                    <td>{{ $customerOrders->serviceType }}</td>
+                    <td>{{ $customerOrders->kilo }}</td>
+                    <td>{{ $customerOrders->kilo }}</td>
+                    <td>cash</td>
+                    <td>{{ $customerOrders->serviceStatus }}</td>
+                    <td>{{ $customerOrders->created_at->format('F j, Y g:ia') }}</td>
+                  </tr>
+                @endforeach  
+              @endif
             </tbody>
         </table>
     </div>

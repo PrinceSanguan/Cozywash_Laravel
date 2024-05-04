@@ -99,80 +99,65 @@ function toggleMenu() {
             <button type="submit" value="search">Search</button><br><br>
         </form>
         
-        <input class="customer-link" type="text" id="address" placeholder="Address" value="{{ $customerDetails ? $customerDetails->address : '' }}" readonly>
 
+        <form action="{{route('admin.invoice.post')}}" method="post" id="myForm">
+            @csrf
+            <input class="customer-link" type="text" id="id" placeholder="id" value="{{ $customerDetails ? $customerDetails->id : '' }}" name="user_id" readonly style="display: none;">
+            <input class="customer-link" type="text" id="address" placeholder="Address" value="{{ $customerDetails ? $customerDetails->address : '' }}" readonly>
         
-        <input type="text" id="voucherCode" placeholder="Enter Voucher Code">
-        <button type="button" id="redeemButton">Redeem</button><br><br>
+            {{-- <input type="text" id="voucherCode" placeholder="Enter Voucher Code" readonly>
+            <button type="button" id="redeemButton">Redeem</button><br><br>
+            --}}
+        
+            <label>Kilo/s:</label>
+            <input type="number" id="kilos" min="0" name="kilo" step="0.1" required>
+            <br>
+        
+            <label></label>
+            <select id="serviceType" name="serviceType" required>
+                <option value="" disabled selected>- Select -</option>
+                <option value="fullService">Full-Service</option>
+                <option value="selfService">Self-Service</option>
+            </select>
+        
+            <label>Shipping Option:</label>
+            <select id="shippingOption" name="shippingOption" required>
+                <option value="" disabled selected>- Select -</option>
+                <option value="selfPickup">Self-Pick-Up</option>
+                <option value="delivery">Delivery</option>
+            </select><br>
+        </div>
+        
+            <div class="quantityForm">
+                <h3>Qty</h3>
+                <label>Detergent: </label>
+                <input type="number" id="detergent" min="0" name="detergent" required>
+                <br>
+        
+                <label>Fabcon: </label>
+                <input type="number" id="fabcon" min="0" name="fabcon" required>
+                <br>
+        
+                <label>Bleach: </label>
+                <input type="number" id="bleach" min="0" name="bleach" required>
+                <br>
+        
+                <label>Plastic: </label>
+                <input type="number" id="plastic" min="0" name="plastic" required>
+            </div>
+        
+            <button type="button" id="clearButton">Clear</button>
+            <button type="submit" id="proceedButton">Proceed</button>
+        </form>
+        
 
 
-         <label for="kilos">Kilo/s:</label>
-        <input type="number" id="kilos" min="0" step="0.1">
-        <br>
+<footer>
+    <p style="font-size: 13px;"> &copy; 2024 CozyWash. All rights reserved.</p>
+</footer>
 
-        <!--Kilos-->
-     <script>
-        const kilosInput = document.getElementById('kilos');
-        const serviceTypeSelect = document.getElementById('serviceType');
-        const shippingOptionSelect = document.getElementById('shippingOption');
-        const detergentInput = document.getElementById('detergent');
-        const fabconInput = document.getElementById('fabcon');
-        const bleachInput = document.getElementById('bleach');
-        const plasticInput = document.getElementById('plastic');
-
-        serviceTypeSelect.addEventListener('change', updateShippingOptions);</script>
-
-
-        <label for="serviceType">Service Type:</label>
-        <select id="serviceType">
-            <option value="" disabled selected>- Select -</option>
-            <option value="full">Full-Service</option>
-            <option value="self">Self-Service</option>
-        </select>
-
-        <label for="shippingOption">Shipping Option:</label>
-        <select id="shippingOption">
-            <option value="" disabled selected>- Select -</option>
-            <option value="selfPickup">Self-Pick-Up</option>
-            <option value="delivery" disabled>Delivery</option>
-        </select><br>
-    </div>
-
-    <!--Delivey-->
-    <script>
-    function updateShippingOptions() {
-            const serviceType = serviceTypeSelect.value;
-            // Enable or disable delivery option based on service type
-            if (serviceType === 'full') {
-                shippingOptionSelect.querySelector('option[value="delivery"]').disabled = false;
-            } else {
-                shippingOptionSelect.value = 'selfPickup';
-                shippingOptionSelect.querySelector('option[value="delivery"]').disabled = true;
-            } 
-        }
-    </script>
-
-       <div class="quantityForm">
-        <h3>Qty</h3>
-        <label for="detergent">Detergent: </label>
-        <input type="number" id="detergent" min="0">
-        <br>
-
-        <label for="fabcon">Fabcon: </label>
-        <input type="number" id="fabcon" min="0">
-        <br>
-
-        <label for="bleach">Bleach: </label>
-        <input type="number" id="bleach" min="0">
-        <br>
-
-        <label for="plastic">Plastic: </label>
-        <input type="number" id="plastic" min="0">
-</div>
-
-<button type="button" id="clearButton">Clear</button>
 <!--ClearButton-->
-    <script>
+<script>
     function clearInvoice() {
     document.getElementById('customerSearch').value = '';
     document.getElementById('address').value = '';
@@ -186,49 +171,21 @@ function toggleMenu() {
     document.getElementById('plastic').value = '';
     document.getElementById('price').value = '';
 }
-
-// Add event listener to clear button
-document.getElementById('clearButton').addEventListener('click', clearInvoice);
 </script>
 
-<button type="button" id="proceedButton">Proceed</button>
-<!--Proceed Button-->
 <script>
-    // ProceedButton
-const proceedButton = document.getElementById('proceedButton');
+    document.getElementById("clearButton").addEventListener("click", function() {
+        // Get all input fields within the form
+        var inputs = document.querySelectorAll("#myForm input[type='text'], #myForm input[type='number'], #myForm select");
 
-// Add event listener for click event
-proceedButton.addEventListener('click', function() {
-    // Check if all required fields are filled
-    const customerName = document.getElementById('customerSearch').value;
-    const address = document.getElementById('address').value;
-    const serviceType = document.getElementById('serviceType').value;
-    const shippingOption = document.getElementById('shippingOption').value;
-    const kilos = document.getElementById('kilos').value;
-
-    // Optional fields
-    const voucherCode = document.getElementById('voucherCode').value;
-    const detergent = document.getElementById('detergent').value;
-    const fabcon = document.getElementById('fabcon').value;
-    const bleach = document.getElementById('bleach').value;
-    const plastic = document.getElementById('plastic').value;
-
-    // Validate required fields
-    if (customerName && address && serviceType && shippingOption && kilos) {
-        // Redirect to another page
-        window.location.href = 'payment.html';
-    } else {
-        // Show error message or handle validation accordingly
-        alert('Please fill in all required fields.');
-    }
-});
+        // Loop through each input field and clear its value
+        inputs.forEach(function(input) {
+            input.value = '';
+        });
+    });
 </script>
-</form>
 
 
-<footer>
-    <p style="font-size: 13px;"> &copy; 2024 CozyWash. All rights reserved.</p>
-</footer>
 
 <script src="{{asset('js/invoice.js')}}"></script>
 </div>

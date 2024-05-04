@@ -49,6 +49,7 @@ Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.da
 
 Route::get('admin/invoice/{id?}', [AdminController::class, 'invoice'])->name('admin.invoice');
 Route::get('admin/searchCustomers', [AdminController::class, 'searchCustomers'])->name('admin.searchCustomers');
+Route::post('admin/invoice', [AdminController::class, 'invoicePost'])->name('admin.invoice.post');
 
 
 

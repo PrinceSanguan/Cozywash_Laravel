@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 Use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\CustomerOrder;
 
 class AdminController extends Controller
 {
@@ -36,10 +37,14 @@ class AdminController extends Controller
         // Check if the user is found
         if (!$user) {
             return redirect()->route('welcome')->withErrors(['error' => 'User not found.']);
-        } 
+        }
+
+        
+        // Fetch all data from the customerOrder table
+       $customerOrder = CustomerOrder::all();
 
         // Pass the information to the view
-        return view('admin.dashboard');
+        return view('admin.dashboard', ['customerOrder' => $customerOrder]);
     }
 
     public function history() 
@@ -148,4 +153,38 @@ class AdminController extends Controller
     }
     
 
+    public function invoicePost(Request $request)
+    {
+        // Validate the request data with custom error messages
+        $request->validate([
+            'user_id' => 'required',
+            'serviceType' => 'required',
+            'shippingOption' => 'required',
+            'kilo' => 'required',
+            'detergent' => 'required',
+            'fabcon' => 'required',
+            'bleach' => 'required',
+            'plastic' => 'required',
+        ]);
+
+        // Saving in the database
+        $customerOrder = CustomerOrder::create([
+            'user_id' => $request->input('user_id'),
+            'serviceType' => $request->input('serviceType'),
+            'shippingOption' => $request->input('shippingOption'),
+            'kilo' => $request->input('kilo'),
+            'detergent' => $request->input('detergent'),
+            'fabcon' => $request->input('fabcon'),
+            'bleach' => $request->input('bleach'),
+            'plastic' => $request->input('plastic'),
+            'serviceStatus' => 'pending',
+        ]);
+
+        if (!$customerOrder) {
+            return redirect()->route('admin.invoice')->with('error', 'Failed to customer order.');
+        }
+
+        // Display success message as alert
+        echo "<script>alert('Customer Order Success!'); window.location.href = '/admin/invoice';</script>";
+    }
 }
