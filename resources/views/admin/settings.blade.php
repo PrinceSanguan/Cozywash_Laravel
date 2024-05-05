@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="{{asset('css/users.css')}}">
+    <title>Settings</title>
+    <link rel="stylesheet" href="{{asset('css/settings.css')}}">
     <link rel="icon" href="{{asset('image/fabicon.png')}}" type="fabicon.png">
- 
+
+
 </head>
 <body>
 
@@ -62,82 +63,135 @@ setInterval(updateDateTime, 1000);</script>
   </ul>
   </div>
 </div>
-
-<div class="customer" style="background: #D66894; border-radius: 20px; padding-left: 100px; padding-right: 100px; margin-top: 20px; margin-right: 100px; margin-left: 100px; ">
-    
-      <a href="customers.html"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
-  <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z"/>
-</svg> Customers</a></li>
-</ul>
-</div>
+</head>
+<body>
 
 <div class="container">
-        <div class="user-form">
-            <h2>Add New Staff</h2>
-
-            <form method="post" action="{{ route('admin.addStaff') }}">
-                @csrf
-
-                @if ($errors->any())
-                    <div class="text-danger">{{ $errors->first() }}</div>
-                @endif
-            
-                <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" name="firstName" required><br>
-            
-                <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName" name="lastName" required><br>
-            
-                <label for="email">Email Address:</label>
-                <input type="text" id="email" name="email" required><br>
-            
-                <label for="contact">Contact Number:</label>
-                <input type="text" id="contact" name="contact" required><br>
-            
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address" required><br>
-            
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required><br>
-            
-                <button type="submit" name="submit" value="Add Now">Add Now</button>
-            </form>
-
-        </div>
-
-        <div class="user-list">
-            <h2>Staff List</h2>
-            <table id="staffTable">
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Contact Number</th>
-                        <th>Address</th>
-                        <th>Hire Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if ($data)
-                    @foreach ($data as $datas)
-                      <tr>
-                        <td>{{ $datas->firstName }}</td>
-                        <td>{{ $datas->lastName }}</td>
-                        <td>{{ $datas->contact }}</td>
-                        <td>{{ $datas->address }}</td>
-                        <td>{{ $datas->created_at->format('F j, Y g:ia') }}</td>
-                      </tr>
-                    @endforeach  
-                  @endif
-                </tbody>
-            </table>
-        </div>
+    <div class="column">
+    <form id="settingsForm" method="post" action="{{route('admin.updatePrice')}}">
+        @csrf
+            <h3>UPDATE PRICE</h3>
+            <label for="byKilo">Per Kilo:</label>
+            <input type="number" id="byKilo" name="kilo">
+            <br>
+            <label for="washPrice">Wash:</label>
+            <input type="number" id="washPrice" name="wash">
+            <br>
+            <label for="dryPrice">Dry:</label>
+            <input type="number" id="dryPrice" name="dry">
+            <br>
+            <label for="foldPrice">Fold:</label>
+            <input type="number" id="foldPrice" name="fold">
+            <br>
+            <label for="detergentPrice">Detergent:</label>
+            <input type="number" id="detergentPrice" name="detergent">
+            <br>
+            <label for="fabconPrice">Fabcon:</label>
+            <input type="number" id="fabconPrice" name="fabcon">
+            <br>
+            <label for="bleachPrice">Bleach:</label>
+            <input type="number" id="bleachPrice" name="bleach">
+            <br>
+            <label for="plasticPrice">Plastic:</label>
+            <input type="number" id="plasticPrice" name="plastic">
+            <br>
+            <input type="submit" name="updatePrices" value="Update All Prices">
+        </form>
     </div>
 
+    <div class="column">
+        <div id="serviceBreakdown"></div>
+    </div>
+
+    <div class="column">
+        <div id="additionalItemsBreakdown"></div>
+    </div>
+</div>
+
+<script>
+    // Price Breakdown Update
+    function calculateServiceBreakdown() {
+        const serviceBreakdownDiv = document.getElementById('serviceBreakdown');
+        const additionalItemsBreakdownDiv = document.getElementById('additionalItemsBreakdown');
+
+        let kilo= {{ $prices->kilo}};
+        let wash = {{ $prices->wash }};
+        let dry = {{ $prices->dry }};
+        let fold = {{ $prices->fold }};
+        let detergent = {{ $prices->detergent}};
+        let fabcon = {{ $prices->fabcon}};
+        let bleach = {{ $prices->bleach}};
+        let plastic = {{ $prices->plastic}};
+
+
+        const totalServicePrice = washPrice + dryPrice + foldPrice;
+        const totalAdditionalPrice = (2 * detergentPrice) + (2 * fabconPrice) + bleachPrice + plasticPrice;
+
+        let serviceBreakdown = `
+            <h3>SERVICES</h3>
+            <table>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td>Batch (1kg to 8kg</td>
+                    <td>₱${kilo}.00</td>
+                </tr>
+                <tr>
+                    <td>Wash</td>
+                    <td>₱${wash}.00</td>
+                </tr>
+                <tr>
+                    <td>Dry</td>
+                    <td>₱${dry}.00</td>
+                </tr>
+                <tr>
+                    <td>Fold</td>
+                    <td>₱${fold}.00</td>
+                </tr>
+            </table>
+        `;
+
+        let additionalItemsBreakdown = `
+            <h3>ITEMS</h3>
+            <table>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td>Detergent (2pcs)</td>
+                    <td>₱${detergent}.00</td>
+                </tr>
+                <tr>
+                    <td>Fabcon (2pcs)</td>
+                    <td>₱${fabcon}.00</td>
+                </tr>
+                <tr>
+                    <td>Bleach</td>
+                    <td>₱${bleach}.00</td>
+                </tr>
+                <tr>
+                    <td>Plastic</td>
+                    <td>₱${plastic}.00</td>
+                </tr>  
+            
+            </table>
+        `;
+
+        serviceBreakdownDiv.innerHTML = serviceBreakdown;
+        additionalItemsBreakdownDiv.innerHTML = additionalItemsBreakdown;
+    }
+
+    // Call the function initially to display the breakdown
+    calculateServiceBreakdown();
+
+</script>
 <footer>
     <p style="font-size: 13px;"> &copy; 2024 CozyWash. All rights reserved.</p>
 </footer>
 
-<script src="{{asset('js/users.js')}}"></script>
+<script src="{{asset('js/settings.js')}}"></script>
 </body>
 </html>

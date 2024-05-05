@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 Use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CustomerOrder;
+use App\Models\Prices;
 
 class AdminController extends Controller
 {
@@ -43,8 +44,19 @@ class AdminController extends Controller
         // Fetch all data from the customerOrder table
        $customerOrder = CustomerOrder::all();
 
+       // Fetch all data from the customerOrder table where serviceStatus is pending
+        $ongoingServices= CustomerOrder::where('serviceStatus', 'pending')->count();
+
+        // Fetch all data from the customerOrder table where serviceStatus is paid
+        $completedServices= CustomerOrder::where('serviceStatus', 'paid')->count();
+
+        // Total Sales Calculation
+        $totalSales = CustomerOrder::sum('sales');
+
+
         // Pass the information to the view
-        return view('admin.dashboard', ['customerOrder' => $customerOrder]);
+        return view('admin.dashboard', ['customerOrder' => $customerOrder, 'ongoingServices' => $ongoingServices, 
+                                        'completedServices' => $completedServices, 'totalSales' => $totalSales]);
     }
 
     public function history() 
@@ -74,6 +86,73 @@ class AdminController extends Controller
 
         // Pass the information to the view
         return view('admin.users', ['data' => $data]);
+    }
+
+    public function settings() 
+    {
+          $user = $this->getUserInfo();
+
+        // Check if the user is found
+        if (!$user) {
+            return redirect()->route('welcome')->withErrors(['error' => 'User not found.']);
+        }
+
+        // Fetch all data from the Prices
+        $prices = Prices::first();
+
+        // Pass the information to the view
+        return view('admin.settings', ['prices' => $prices]);
+    }
+
+    public function updatePrice(Request $request)
+    {
+
+        // Fetch the single record from the prices table
+        $prices = Prices::first();
+
+        // Prepare an array to hold the fields to update
+        $updateData = [];
+
+        
+        if ($request->filled('kilo')) {
+            $updateData['kilo'] = $request->input('kilo');
+        }
+
+        if ($request->filled('wash')) {
+            $updateData['wash'] = $request->input('wash');
+        }
+
+        if ($request->filled('dry')) {
+            $updateData['dry'] = $request->input('dry');
+        }
+
+        if ($request->filled('fold')) {
+            $updateData['fold'] = $request->input('fold');
+        }
+
+        if ($request->filled('detergent')) {
+            $updateData['detergent'] = $request->input('detergent');
+        }
+
+        if ($request->filled('fabcon')) {
+            $updateData['fabcon'] = $request->input('fabcon');
+        }
+
+        if ($request->filled('bleach')) {
+            $updateData['bleach'] = $request->input('bleach');
+        }
+
+
+        if ($request->filled('plastic')) {
+            $updateData['plastic'] = $request->input('plastic');
+        }
+
+        $prices->update($updateData);
+
+
+        // Display success message as alert
+        echo "<script>alert('Price is Updated!'); window.location.href = '/admin/settings';</script>";
+
     }
 
     public function addStaff(Request $request) 
@@ -155,52 +234,50 @@ class AdminController extends Controller
 
     public function invoicePost(Request $request)
     {
-        // Validate the request data with custom error messages
-        $request->validate([
-            'user_id' => 'required',
-            'serviceType' => 'required',
-            'shippingOption' => 'required',
-            'kilo' => 'required',
-            'detergent' => 'required',
-            'fabcon' => 'required',
-            'bleach' => 'required',
-            'plastic' => 'required',
-        ]);
+    // Validate the request data with custom error messages
+    $request->validate([
+        'user_id' => 'required',
+        'serviceType' => 'required',
+        'shippingOption' => 'required',
+        'kilo' => 'required',
+        'detergent' => 'required',
+        'fabcon' => 'required',
+        'bleach' => 'required',
+        'plastic' => 'required',
+    ]);
+    
+    // Fetch Latest Price
+    $latestPrice = Prices::first();
 
-        // Saving in the database
-        $customerOrder = CustomerOrder::create([
-            'user_id' => $request->input('user_id'),
-            'serviceType' => $request->input('serviceType'),
-            'shippingOption' => $request->input('shippingOption'),
-            'kilo' => $request->input('kilo'),
-            'detergent' => $request->input('detergent'),
-            'fabcon' => $request->input('fabcon'),
-            'bleach' => $request->input('bleach'),
-            'plastic' => $request->input('plastic'),
-            'serviceStatus' => 'pending',
-        ]);
+    // Calculate the total balance
+    $fabconPrice = $request->input('fabcon') * $latestPrice->fabcon;
+    $detergentPrice = $request->input('detergent') * $latestPrice->detergent;
+    $bleachPrice = $request->input('bleach') * $latestPrice->bleach;
+    $plasticPrice = $request->input('plastic') * $latestPrice->plastic;
+    
+    $totalBalance = $fabconPrice + $detergentPrice + $bleachPrice + $plasticPrice +
+                    $latestPrice->wash + $latestPrice->dry + $latestPrice->fold + 30;
+
+    // Saving in the database
+    $customerOrder = CustomerOrder::create([
+        'user_id' => $request->input('user_id'),
+        'serviceType' => $request->input('serviceType'),
+        'shippingOption' => $request->input('shippingOption'),
+        'kilo' => $request->input('kilo'),
+        'detergent' => $request->input('detergent'),
+        'fabcon' => $request->input('fabcon'),
+        'bleach' => $request->input('bleach'),
+        'plastic' => $request->input('plastic'),
+        'serviceStatus' => 'pending',
+        'sales' => $totalBalance,
+    ]);
 
         if (!$customerOrder) {
             return redirect()->route('admin.invoice')->with('error', 'Failed to customer order.');
         }
 
-        // Fetch only the last entry from customerOrder table
-        $latestOrder = CustomerOrder::latest()->first();
-
-        // fabcon price
-        $fabconPrice = $latestOrder->fabcon * 12;
-
-        // detergent price
-        $detergentPrice = $latestOrder->detergent * 18;
-
-        // Bleach price
-        $bleachPrice = $latestOrder->bleach * 12;
-
-        // platic
-        $plasticPrice = $latestOrder->plastic * 3;
-
-        $totalBalance = $fabconPrice + $detergentPrice + $bleachPrice + $plasticPrice +
-                        65 + 75 + 30 + 30;
+    // Fetch only the last entry from customerOrder table
+    $latestOrder = CustomerOrder::latest()->first();
 
         // Display success message as modal along with the last entry
         return "
@@ -232,13 +309,13 @@ class AdminController extends Controller
                         <td>Detergent</td>
                         <td>18.00</td>
                         <td>{$latestOrder->detergent}</td>
-                        <td>{$detergentPrice}</td>
+                        <td>{$detergentPrice}.00</td>
                     </tr>
                     <tr>
                         <td>Fabcon</td>
                         <td>12.00</td>
                         <td>{$latestOrder->fabcon}</td>
-                        <td>{$fabconPrice}</td>
+                        <td>{$fabconPrice}.00</td>
                     </tr>
                     <tr>
                         <td>Bleach (Color Safe)</td>
@@ -276,7 +353,7 @@ class AdminController extends Controller
         <script>
             setTimeout(function() {
                 window.location.href = '/admin/invoice';
-            }, 25000); // Redirect after 10 seconds
+            }, 10000); // Redirect after 10 seconds
         </script>";
 
 

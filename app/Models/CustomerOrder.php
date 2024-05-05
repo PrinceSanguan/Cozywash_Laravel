@@ -19,6 +19,7 @@ class CustomerOrder extends Model
         'bleach',
         'plastic',
         'serviceStatus',
+        'sales',
     ];
 
     // Define the relationship with the User model

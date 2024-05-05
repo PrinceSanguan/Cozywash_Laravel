@@ -51,9 +51,10 @@ Route::get('admin/invoice/{id?}', [AdminController::class, 'invoice'])->name('ad
 Route::get('admin/searchCustomers', [AdminController::class, 'searchCustomers'])->name('admin.searchCustomers');
 Route::post('admin/invoice', [AdminController::class, 'invoicePost'])->name('admin.invoice.post');
 
-
-
 Route::get('admin/history', [AdminController::class, 'history'])->name('admin.history');
+
+Route::get('admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
+Route::post('admin/settings', [AdminController::class, 'updatePrice'])->name('admin.updatePrice');
 
 Route::get('admin/users', [AdminController::class, 'users'])->name('admin.users');
 Route::post('admin/users', [AdminController::class, 'addStaff'])->name('admin.addStaff');

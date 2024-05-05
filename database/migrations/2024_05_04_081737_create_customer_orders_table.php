@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('fabcon');
             $table->string('bleach');
             $table->string('plastic');
+            $table->string('sales');
             $table->enum('serviceStatus', ['pending', 'paid'])->default('pending');
 
             $table->timestamps();
